@@ -1,26 +1,9 @@
----
-title: "Case Study 08"
-author: Yixuan Zhao
-date: 10-25-2022
-output:
-  html_document: default
-  github_document: default
-  powerpoint_presentation: default
-  word_document: default
----
+Case Study 08
+================
+Yixuan Zhao
+10-25-2022
 
-
-```{r,echo = FALSE}
-library(tidyverse)
-library(ggplot2)
-library(dplyr)
-url = "https://gml.noaa.gov/webdata/ccgg/trends/ch4/ch4_annmean_gl.txt"
-df = read.table(url, col.names = c("year", "mean", "unc"))
-# rmarkdown::render("Y:/GitHubTB/case_studies-yzhao72/week_08/case_study_08.Rmd", output_format = "all")
-```
-
-
-```{r}
+``` r
 min_year = df$year %>% min()
 max_year = df$year %>% max()
 df %>% 
@@ -35,8 +18,9 @@ df %>%
        title= "Trends in Atmospheric Chemical Compound")
 ```
 
+![](case_study_08_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-```{r}
+``` r
 summ = df %>% 
   slice(-1) %>% 
   mutate(Years = case_when(
@@ -55,3 +39,11 @@ summ = df %>%
                    Max = max(mean))
 knitr::kable(summ,'simple')
 ```
+
+| Years       |     Mean |      S.D. |     Min |     Max |
+|:------------|---------:|----------:|--------:|--------:|
+| 1980 - 1989 | 1681.548 | 18.597033 | 1657.29 | 1704.54 |
+| 1990 - 1999 | 1744.591 | 17.728495 | 1714.42 | 1772.39 |
+| 2000 - 2009 | 1778.246 |  7.115024 | 1771.20 | 1793.52 |
+| 2010 - 2019 | 1829.700 | 23.950969 | 1798.90 | 1866.59 |
+| 2020 -      | 1887.125 | 11.589480 | 1878.93 | 1895.32 |
